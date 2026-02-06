@@ -5,13 +5,23 @@ import OptionSelect from './components/OptionSelect';
 
 const App = () => {
   const [notes, setNotes] = useState([]);
+  const [filter, setFilter] = useState('All notes');
+  const [sortBy, setSort] = useState('Date');
 
-  const handleDelete = (id) => {
-    const confirm = window.confirm('Are you sure you want to delete this note?');
-    if (confirm) {
-      setNotes(notes.filter((note) => note.id != id));
-    }
-  };
+  const filteredNotes = notes
+    .filter((note) => {
+      if (filter === 'All notes') return true;
+      else return note.category === filter;
+    })
+    .slice()
+    .sort((a, b) => {
+      switch (sortBy) {
+        case 'Title':
+          return a.title < b.title ? -1 : 1;
+        case 'Data':
+          return a.id - b.id;
+      }
+    });
 
   return (
     <div className='min-w-sm'>
@@ -22,10 +32,12 @@ const App = () => {
           <OptionSelect
             name={'Category'}
             options={['All notes', 'Work', 'Personal', 'Ideas']}
+            onChange={(e) => setFilter(e.target.value)}
           />
           <OptionSelect
             name={'Sort'}
             options={['Date', 'Title']}
+            onChange={(e) => setSort(e.target.value)}
           />
         </div>
         <AddNote
@@ -34,8 +46,8 @@ const App = () => {
         />
       </nav>
       <NoteList
-        notes={notes}
-        deleteNote={handleDelete}
+        notes={filteredNotes}
+        deleteNote={(id) => setNotes(notes.filter((note) => note.id != id))}
       />
     </div>
   );

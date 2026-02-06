@@ -10,7 +10,6 @@ const AddNote = ({ notes, setNotes }) => {
     priority: 'Medium',
     category: 'Work',
     description: '',
-    color: 'yellow',
   });
 
   const handleChangeNote = (e) => {
@@ -22,7 +21,7 @@ const AddNote = ({ notes, setNotes }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setNotes([...notes, { id: Date.now(), ...note }]);
+    setNotes([{ id: Date.now(), ...note }, ...notes]);
 
     setNote({
       title: '',
@@ -50,7 +49,7 @@ const AddNote = ({ notes, setNotes }) => {
 
   return !isFormvisible ? (
     <div
-      className='absolute top-full left-1/2 -translate-x-1/2 -translate-y-5 flex text-center justify-center items-center rounded-lg border-2 shadow-sm border-purple-800 text-bold bg-white w-fit px-3 py-2 cursor-pointer hover:scale-95 transition'
+      className='absolute top-full left-1/2 -translate-x-1/2 -translate-y-5 flex justify-center items-center bg-white rounded-lg border-2 border-purple-800 shadow-sm text-center text-bold w-fit px-3 py-2 cursor-pointer hover:scale-95 transition'
       onClick={handleAddNote}
     >
       <img
@@ -61,7 +60,7 @@ const AddNote = ({ notes, setNotes }) => {
       <p className='md:text-m text-sm'>Add new note</p>
     </div>
   ) : (
-    <div className='absolute top-full left-1/2 -translate-x-1/2 -translate-y-6 p-4 flex justify-between items-start text-purple-800 bg-white w-70 min-h-50  rounded-lg border-2 shadow-lg transition duration-250 ease-out z-10'>
+    <div className='absolute top-full left-1/2 -translate-x-1/2 -translate-y-6 p-4 flex justify-between items-start text-purple-800 bg-white w-70 min-h-50 rounded-lg border-2 shadow-lg transition duration-250 ease-out z-10'>
       <form
         onSubmit={handleSubmit}
         className='flex flex-col gap-4 justify-between items-start w-full md:text-m text-sm'
@@ -105,7 +104,7 @@ const AddNote = ({ notes, setNotes }) => {
           <textarea
             name='description'
             type='text'
-            className='w-full h-30 p-2 border  border-purple-800 rounded-lg outline-purple-800 text-gray-800'
+            className='w-full h-30 p-2 border border-purple-800 rounded-lg outline-purple-800 text-gray-800'
             value={note.description}
             onChange={handleChangeNote}
           ></textarea>

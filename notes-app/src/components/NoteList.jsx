@@ -11,11 +11,11 @@ const NoteList = ({ notes, deleteNote }) => {
         {notes.map((note) => (
           <div
             key={note.id}
-            className={`relative p-2 bg-white text-gray-600 rounded-lg shadow-md border-l-4 sm:w-70 sm:m-2 mb-1 mx-1 w-full sm:h-70 cursor-pointer flex flex-col justify-around ${note.priority == 'High' ? 'border-red-500' : note.priority == 'Medium' ? 'border-yellow-500' : 'border-green-500'}`}
+            className={`relative bg-white text-gray-600 border-l-4 rounded-lg shadow-md sm:m-2 mb-1 mx-1 p-2 sm:w-70 w-full cursor-pointer flex flex-col justify-around ${note.priority == 'High' ? 'border-red-500' : note.priority == 'Medium' ? 'border-yellow-500' : 'border-green-500'}`}
           >
-            <h3 className='mb-2 overflow-clip max-h-14 text-md font-bold '>{note.title}</h3>
+            <h3 className='mb-2 overflow-clip max-h-14 text-md font-bold'>{note.title}</h3>
 
-            <p className='mb-2 sm:h-50 overflow-y-auto text-gray-800 text-sm'>{note.description}</p>
+            <p className='mb-2 overflow-y-auto text-gray-800 text-sm'>{note.description}</p>
             <p className='text-xs'>
               <strong>Category: </strong>
               {note.category}
