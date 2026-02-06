@@ -10,22 +10,14 @@ const AddNote = ({ notes, setNotes }) => {
     priority: 'Medium',
     category: 'Work',
     description: '',
-    color: 'yellow-300',
+    color: 'yellow',
   });
 
   const handleChangeNote = (e) => {
-    if (e.target.name.toLowerCase() === 'priority') {
-      setNote({
-        ...note,
-        [e.target.name.toLowerCase()]: e.target.value,
-        color: e.target.value == 'High' ? 'red-600' : e.target.value == 'Medium' ? 'yellow-300' : 'emerald-700',
-      });
-    } else {
-      setNote({
-        ...note,
-        [e.target.name.toLowerCase()]: e.target.value,
-      });
-    }
+    setNote({
+      ...note,
+      [e.target.name.toLowerCase()]: e.target.value,
+    });
   };
 
   const handleSubmit = (e) => {
@@ -37,7 +29,6 @@ const AddNote = ({ notes, setNotes }) => {
       priority: 'Medium',
       category: 'Work',
       description: '',
-      color: 'yellow-300',
     });
     setFormVisibility(false);
   };
@@ -49,25 +40,31 @@ const AddNote = ({ notes, setNotes }) => {
   const handleCancel = () => {
     setFormVisibility(false);
     setButtonsHover(false);
+    setNote({
+      title: '',
+      priority: 'Medium',
+      category: 'Work',
+      description: '',
+    });
   };
 
   return !isFormvisible ? (
     <div
-      className='flex justify-center items-center flex-col rounded-lg border-dashed border-2 text-purple-800 bg-white w-50 min-h-50 cursor-pointer'
+      className='absolute top-full left-1/2 -translate-x-1/2 -translate-y-5 flex text-center justify-center items-center rounded-lg border-2 shadow-sm border-purple-800 text-bold bg-white w-fit px-3 py-2 cursor-pointer hover:scale-95 transition'
       onClick={handleAddNote}
     >
       <img
         src='../../public/add-note.svg'
         alt='add note'
-        className='w-10 h-10'
+        className='md:w-8 w-6 md:h-8 h-6 '
       />
-      <p className='font-bold text-lg'>Add new note</p>
+      <p className='md:text-m text-sm'>Add new note</p>
     </div>
   ) : (
-    <div className='p-4 flex justify-between items-start text-purple-800 bg-white w-60 min-h-50  rounded-lg border-2 border-dashed transition'>
+    <div className='absolute top-full left-1/2 -translate-x-1/2 -translate-y-6 p-4 flex justify-between items-start text-purple-800 bg-white w-70 min-h-50  rounded-lg border-2 shadow-lg transition duration-250 ease-out z-10'>
       <form
         onSubmit={handleSubmit}
-        className='flex flex-col gap-4 justify-between items-start w-full'
+        className='flex flex-col gap-4 justify-between items-start w-full md:text-m text-sm'
       >
         <div className='w-full'>
           <label
@@ -79,7 +76,7 @@ const AddNote = ({ notes, setNotes }) => {
           <input
             name='title'
             type='text'
-            className='w-full p-2 border rounded-lg'
+            className='w-full p-2 border border-purple-800 rounded-lg outline-purple-800 text-gray-800'
             value={note.title}
             onChange={handleChangeNote}
           />
@@ -108,7 +105,7 @@ const AddNote = ({ notes, setNotes }) => {
           <textarea
             name='description'
             type='text'
-            className='w-full p-2 border rounded-lg'
+            className='w-full h-30 p-2 border  border-purple-800 rounded-lg outline-purple-800 text-gray-800'
             value={note.description}
             onChange={handleChangeNote}
           ></textarea>

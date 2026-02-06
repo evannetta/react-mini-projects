@@ -14,11 +14,11 @@ const App = () => {
   };
 
   return (
-    <>
-      <nav className='w-full px-8 py-4 mb-8 bg-white shadow-md text-purple-800 flex flex-row justify-between items-center '>
-        <h2 className='text-lg font-bold'>Hi, here are your notes</h2>
+    <div className='min-w-sm'>
+      <nav className='relative w-full px-2 md:px-4 md:py-4 pb-8 pt-4 mb-10 bg-white shadow-md text-purple-800 flex md:flex-row flex-col gap-4 justify-between items-center'>
+        <h2 className='text-m md:text-lg font-bold'>Hi, here are your notes</h2>
 
-        <div className='flex  items-center gap-10'>
+        <div className='flex  items-center md:gap-2 gap-5'>
           <OptionSelect
             name={'Category'}
             options={['All notes', 'Work', 'Personal', 'Ideas']}
@@ -28,16 +28,16 @@ const App = () => {
             options={['Date', 'Title']}
           />
         </div>
+        <AddNote
+          notes={notes}
+          setNotes={setNotes}
+        />
       </nav>
-      <AddNote
-        notes={notes}
-        setNotes={setNotes}
-      />
       <NoteList
         notes={notes}
         deleteNote={handleDelete}
       />
-    </>
+    </div>
   );
 };
 
