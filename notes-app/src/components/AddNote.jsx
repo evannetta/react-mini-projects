@@ -44,18 +44,18 @@ const AddNote = ({ notes, setNotes }) => {
 
   return !isFormvisible ? (
     <div
-      className='absolute top-full left-1/2 -translate-x-1/2 -translate-y-5 flex justify-center items-center bg-white rounded-lg border-2 border-purple-800 shadow-sm text-center text-bold w-fit px-3 py-2 cursor-pointer hover:scale-95 transition'
+      className='absolute top-full left-1/2 -translate-x-1/2 -translate-y-5 flex justify-between items-center bg-blue-900 rounded-lg text-white shadow-sm text-center text-bold w-36 px-3 py-2 cursor-pointer hover:scale-95 transition'
       onClick={() => setFormVisibility(true)}
     >
       <img
         src='../../public/add-note.svg'
         alt='add note'
-        className='md:w-8 w-6 md:h-8 h-6 '
+        className='md:w-6 w-5 md:h-6 h-5'
       />
       <p className='md:text-m text-sm'>Add new note</p>
     </div>
   ) : (
-    <div className='absolute top-full left-1/2 -translate-x-1/2 -translate-y-6 p-4 flex justify-between items-start text-purple-800 bg-white w-70 min-h-50 rounded-lg border-2 shadow-lg transition duration-250 ease-out z-10'>
+    <div className='absolute top-full left-1/2 -translate-x-1/2 -translate-y-4 p-4 flex justify-between items-start text-gray-900 bg-white w-70 min-h-50 rounded-lg border-2 border-blue-900 shadow-xl transition duration-250 ease-out'>
       <form
         onSubmit={handleSubmit}
         className='flex flex-col gap-4 justify-between items-start w-full md:text-m text-sm'
@@ -63,14 +63,15 @@ const AddNote = ({ notes, setNotes }) => {
         <div className='w-full'>
           <label
             htmlFor='title'
-            className='block font-semibold'
+            className='block font-semibold mb-1'
           >
             Title
           </label>
           <input
+            autoFocus
             name='title'
             type='text'
-            className='w-full p-2 border border-purple-800 rounded-lg outline-purple-800 text-gray-800'
+            className='w-full p-2 border border-gray-400 rounded-lg outline-blue-900 text-gray-900 font-normal focus:bg-gray-50'
             value={note.title}
             onChange={handleChangeNote}
           />
@@ -92,25 +93,25 @@ const AddNote = ({ notes, setNotes }) => {
         <div className='w-full'>
           <label
             htmlFor='description'
-            className='block font-semibold'
+            className='block font-semibold mb-1'
           >
             Description
           </label>
           <textarea
             name='description'
             type='text'
-            className='w-full h-30 p-2 border border-purple-800 rounded-lg outline-purple-800 text-gray-800'
+            className='w-full h-30 p-2 border border-gray-400 rounded-lg outline-blue-900 text-gray-800 font-normal focus:bg-gray-50'
             value={note.description}
             onChange={handleChangeNote}
           ></textarea>
         </div>{' '}
         <button
-          className={`w-full py-2 ${isCancelHovered ? 'bg-white text-purple-800 border border-purple-800' : 'bg-purple-600 text-white'} rounded-lg cursor-pointer hover:bg-purple-800 hover:text-white transition`}
+          className={`w-full py-2 ${isCancelHovered ? 'bg-white text-blue-900 border border-blue-900' : 'bg-blue-800 text-white'} rounded-lg cursor-pointer hover:bg-blue-900 hover:text-white transition`}
         >
           Add note
         </button>
         <button
-          className='w-full py-2 bg-white text-purple-800 border border-purple-800 rounded-lg cursor-pointer hover:bg-purple-800 hover:text-white'
+          className='w-full py-2 bg-white text-blue-900 border border-blue-900 rounded-lg cursor-pointer hover:bg-blue-900 hover:text-white'
           onClick={handleCancel}
           onMouseEnter={() => setButtonsHover(true)}
           onMouseLeave={() => setButtonsHover(false)}
