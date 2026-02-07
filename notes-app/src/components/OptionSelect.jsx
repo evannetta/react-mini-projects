@@ -1,5 +1,3 @@
-// import { useState } from "react";
-
 const OptionSelect = ({ name, options, onChange, defaultOption = options[0] }) => {
   return (
     <>

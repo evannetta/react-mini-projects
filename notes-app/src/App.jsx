@@ -1,12 +1,19 @@
 import AddNote from './components/AddNote';
 import NoteList from './components/NoteList';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import OptionSelect from './components/OptionSelect';
 
 const App = () => {
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState(() => {
+    const notes = JSON.parse(localStorage.getItem('notes'));
+    return notes || [];
+  });
   const [filter, setFilter] = useState('All notes');
   const [sortBy, setSort] = useState('Date');
+
+  useEffect(() => {
+    localStorage.setItem('notes', JSON.stringify(notes));
+  }, [notes]);
 
   const filteredNotes = notes
     .filter((note) => {
@@ -20,6 +27,9 @@ const App = () => {
           return a.title < b.title ? -1 : 1;
         case 'Data':
           return a.id - b.id;
+        case 'Priority':
+          if (a.priority === 'High' || b.priority === 'Low') return -1;
+          if (a.priority === 'Low' || b.priority === 'High') return 1;
       }
     });
 
@@ -36,7 +46,7 @@ const App = () => {
           />
           <OptionSelect
             name={'Sort'}
-            options={['Date', 'Title']}
+            options={['Date', 'Title', 'Priority']}
             onChange={(e) => setSort(e.target.value)}
           />
         </div>
