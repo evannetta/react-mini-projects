@@ -44,7 +44,7 @@ const AddNote = ({ notes, setNotes }) => {
 
   return !isFormvisible ? (
     <div
-      className='flex justify-between items-center bg-light-sea-green-400 rounded-3xl font-semibold shadow-sm text-center text-bold w-36 px-3 py-2 cursor-pointer hover:scale-95 transition'
+      className='flex justify-between items-center bg-light-sea-green-400 rounded-3xl font-semibold shadow-sm text-center w-36 px-3 py-2 cursor-pointer hover:scale-95 transition'
       onClick={() => setFormVisibility(true)}
     >
       <img

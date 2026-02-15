@@ -36,7 +36,7 @@ const App = () => {
   return (
     <div className='min-w-xs text-ink-black-900'>
       <nav className='sticky top-0 left-0 w-full p-4 mb-5 shadow-md flex flex-row justify-between items-center z-50'>
-        <div className='flex md:flex-row flex-col justify-between gap-4 md:w-1/2 items-start md:items-center'>
+        <div className='flex md:flex-row flex-col justify-between md:justify-between w-1/2 gap-4 items-start md:items-center'>
           <h1 className='text-lg font-semibold'>
             Hi, here are your <span className='text-light-sea-green-800 font-bold'>Notes</span>
           </h1>
