@@ -44,26 +44,26 @@ const AddNote = ({ notes, setNotes }) => {
 
   return !isFormvisible ? (
     <div
-      className='absolute top-full left-1/2 -translate-x-1/2 -translate-y-5 flex justify-between items-center bg-blue-900 rounded-lg text-white shadow-sm text-center text-bold w-36 px-3 py-2 cursor-pointer hover:scale-95 transition'
+      className='flex justify-between items-center bg-light-sea-green-400 rounded-3xl font-semibold shadow-sm text-center text-bold w-36 px-3 py-2 cursor-pointer hover:scale-95 transition'
       onClick={() => setFormVisibility(true)}
     >
       <img
-        src='../../public/add-note.svg'
+        src='add-note.svg'
         alt='add note'
-        className='md:w-6 w-5 md:h-6 h-5'
+        className='md:w-3 w-4 md:h-4 h-3'
       />
       <p className='md:text-m text-sm'>Add new note</p>
     </div>
   ) : (
-    <div className='absolute top-full left-1/2 -translate-x-1/2 -translate-y-4 p-4 flex justify-between items-start text-gray-900 bg-white w-70 min-h-50 rounded-lg border-2 border-blue-900 shadow-xl transition duration-250 ease-out'>
+    <div className='absolute top-0 left-0 w-lvw h-lvh bg-ink-black-900/40 flex justify-between items-start transition duration-250 ease-out'>
       <form
         onSubmit={handleSubmit}
-        className='flex flex-col gap-4 justify-between items-start w-full md:text-m text-sm'
+        className='relative top-1/2 left-1/2 -translate-1/2 p-4 w-70 min-h-50 rounded-2xl bg-white shadow-sm flex flex-col gap-4 justify-between items-start md:text-m text-sm'
       >
         <div className='w-full'>
           <label
             htmlFor='title'
-            className='block font-semibold mb-1'
+            hidden={true}
           >
             Title
           </label>
@@ -71,7 +71,8 @@ const AddNote = ({ notes, setNotes }) => {
             autoFocus
             name='title'
             type='text'
-            className='w-full p-2 border border-gray-400 rounded-lg outline-blue-900 text-gray-900 font-normal focus:bg-gray-50'
+            placeholder='Title'
+            className='w-full p-3 border rounded-2xl border-ink-black-900/20 focus:border-ink-black-900/60 outline-0 font-normal'
             value={note.title}
             onChange={handleChangeNote}
           />
@@ -81,37 +82,39 @@ const AddNote = ({ notes, setNotes }) => {
           options={['High', 'Medium', 'Low']}
           value={note.priority}
           onChange={handleChangeNote}
-          defaultOption={'Medium'}
+          defaultOption={'Priority'}
         />
         <OptionSelect
           name={'Category'}
           options={['Work', 'Personal', 'Ideas']}
           value={note.category}
           onChange={handleChangeNote}
-          defaultOption={'Work'}
+          defaultOption={'Category'}
         />
         <div className='w-full'>
           <label
             htmlFor='description'
-            className='block font-semibold mb-1'
+            hidden={true}
           >
             Description
           </label>
           <textarea
             name='description'
             type='text'
-            className='w-full h-30 p-2 border border-gray-400 rounded-lg outline-blue-900 text-gray-800 font-normal focus:bg-gray-50'
+            placeholder='Description'
+            className='w-full h-30 p-3 border rounded-2xl border-ink-black-900/20 focus:border-ink-black-900/60 outline-0 font-normal '
             value={note.description}
             onChange={handleChangeNote}
           ></textarea>
         </div>{' '}
         <button
-          className={`w-full py-2 ${isCancelHovered ? 'bg-white text-blue-900 border border-blue-900' : 'bg-blue-800 text-white'} rounded-lg cursor-pointer hover:bg-blue-900 hover:text-white transition`}
+          type='submit'
+          className={`w-full py-2 shadow-sm font-semibold ${isCancelHovered ? 'bg-white' : 'bg-light-sea-green-400'} rounded-3xl cursor-pointer transition`}
         >
           Add note
         </button>
         <button
-          className='w-full py-2 bg-white text-blue-900 border border-blue-900 rounded-lg cursor-pointer hover:bg-blue-900 hover:text-white'
+          className='w-full py-2 bg-white shadow-sm font-semibold rounded-3xl cursor-pointer hover:bg-light-sea-green-400 transition'
           onClick={handleCancel}
           onMouseEnter={() => setButtonsHover(true)}
           onMouseLeave={() => setButtonsHover(false)}

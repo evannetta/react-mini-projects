@@ -34,27 +34,31 @@ const App = () => {
     });
 
   return (
-    <div className='min-w-sm'>
-      <nav className='sticky top-0 left-0 w-full px-2 md:px-4 md:py-4 pb-8 pt-4 mb-10 bg-white text-gray-900  shadow-md  flex md:flex-row flex-col gap-4 justify-between md:items-center items-stretch z-50'>
-        <h2 className='text-lg font-semibold'>
-          Hi, here are your <span className=' text-blue-900 font-bold'>Notes</span>
-        </h2>
-        <div className='flex items-center md:gap-2 gap-5'>
+    <div className='min-w-xs text-ink-black-900'>
+      <nav className='sticky top-0 left-0 w-full p-4 mb-5 shadow-md flex flex-row justify-between items-center z-50'>
+        <div className='flex md:flex-row flex-col justify-between gap-4 md:w-1/2 items-start md:items-center'>
+          <h1 className='text-lg font-semibold'>
+            Hi, here are your <span className='text-light-sea-green-800 font-bold'>Notes</span>
+          </h1>
+          <AddNote
+            notes={notes}
+            setNotes={setNotes}
+          />
+        </div>
+        <div className='flex md:flex-row flex-col justify-between gap-4'>
           <OptionSelect
             name={'Category'}
             options={['All notes', 'Work', 'Personal', 'Ideas']}
             onChange={(e) => setFilter(e.target.value)}
+            defaultOption={'Category'}
           />
           <OptionSelect
             name={'Sort'}
             options={['Date', 'Title', 'Priority']}
             onChange={(e) => setSort(e.target.value)}
+            defaultOption={'Sort by'}
           />
         </div>
-        <AddNote
-          notes={notes}
-          setNotes={setNotes}
-        />
       </nav>
       <NoteList
         notes={filteredNotes}
