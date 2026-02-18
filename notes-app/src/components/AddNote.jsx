@@ -77,20 +77,6 @@ const AddNote = ({ notes, setNotes }) => {
             onChange={handleChangeNote}
           />
         </div>
-        <OptionSelect
-          name={'Priority'}
-          options={['High', 'Medium', 'Low']}
-          value={note.priority}
-          onChange={handleChangeNote}
-          defaultOption={'Priority'}
-        />
-        <OptionSelect
-          name={'Category'}
-          options={['Work', 'Personal', 'Ideas']}
-          value={note.category}
-          onChange={handleChangeNote}
-          defaultOption={'Category'}
-        />
         <div className='w-full'>
           <label
             htmlFor='description'
@@ -106,7 +92,21 @@ const AddNote = ({ notes, setNotes }) => {
             value={note.description}
             onChange={handleChangeNote}
           ></textarea>
-        </div>{' '}
+        </div>
+        <OptionSelect
+          name={'Priority'}
+          options={['High', 'Medium', 'Low']}
+          value={note.priority}
+          onChange={handleChangeNote}
+          defaultOption={'Priority'}
+        />
+        <OptionSelect
+          name={'Category'}
+          options={['Work', 'Personal', 'Ideas']}
+          value={note.category}
+          onChange={handleChangeNote}
+          defaultOption={'Category'}
+        />
         <button
           type='submit'
           className={`w-full py-2 shadow-sm font-semibold ${isCancelHovered ? 'bg-white' : 'bg-light-sea-green-400'} rounded-3xl cursor-pointer transition`}
